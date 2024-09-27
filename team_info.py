@@ -10,22 +10,22 @@ def load_team_data():
         ],
         "members": [
             {
-                "name": "张三",
+                "name": "刘曜畅",
                 "position": "CEO",
-                "bio": "拥有10年科技行业经验",
-                "avatar": "https://example.com/zhangsan.jpg"
+                "bio": "拥有10年科技行业经验，引领公司走向创新与成功",
+                "avatar": "static/images/Alexander.jpg"
             },
             {
-                "name": "李四",
-                "position": "CTO",
-                "bio": "专注于人工智能和机器学习",
-                "avatar": "https://example.com/lisi.jpg"
+                "name": "辛怡佳",
+                "position": "CFO",
+                "bio": "资深财务专家，擅长财务战略规划和风险管理",
+                "avatar": "static/images/XinYijia.jpg"
             },
             {
-                "name": "王五",
+                "name": "陈逸轩",
                 "position": "产品经理",
                 "bio": "擅长用户体验设计",
-                "avatar": "https://example.com/wangwu.jpg"
+                "avatar": "static/images/zhubo.jpg"
             }
         ]
     }
