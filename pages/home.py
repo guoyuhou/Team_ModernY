@@ -75,5 +75,8 @@ def render():
         st.error(f"加载页面时发生错误: {str(e)}")
         st.write("请检查数据库连接和数据格式是否正确。")
 
+# 确保render函数可以被其他模块导入
+__all__ = ['render']
+
 if __name__ == "__main__":
     render()
