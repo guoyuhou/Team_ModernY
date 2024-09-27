@@ -83,34 +83,28 @@ def render_learning_resources():
         unsafe_allow_html=True
     )
 
-    # 添加搜索和筛选功能
-    search_term = st.text_input("搜索资源", "")
-    difficulty_filter = st.multiselect("按难度筛选", ["初级", "中级", "高级"])
-
     for resource in resources:
-        if (search_term.lower() in resource['title'].lower() or search_term.lower() in resource['description'].lower()) and \
-           (not difficulty_filter or resource['difficulty'] in difficulty_filter):
-            difficulty_class = f"difficulty-{resource['difficulty'].lower()}"
-            st.markdown(
-                f"""
-                <div class="resource-card">
-                    <img src="{resource['icon']}" style="float: left; margin-right: 20px; width: 60px; height: 60px;">
-                    <div class="resource-title">{resource['title']}</div>
-                    <div class="resource-difficulty {difficulty_class}">{resource['difficulty']}</div>
-                    <div class="resource-description">{resource['description']}</div>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-            if st.button(f"查看 {resource['title']} 内容", key=resource['title']):
-                file_path = os.path.join(os.path.dirname(__file__), 'markdown', resource['file'])
-                try:
-                    with open(file_path, 'r', encoding='utf-8') as file:
-                        content = file.read()
-                        html = markdown.markdown(content)
-                        st.markdown(html, unsafe_allow_html=True)
-                except FileNotFoundError:
-                    st.error(f"抱歉，无法找到 {resource['title']} 的内容文件。我们正在努力修复这个问题。")
+        difficulty_class = f"difficulty-{resource['difficulty'].lower()}"
+        st.markdown(
+            f"""
+            <div class="resource-card">
+                <img src="{resource['icon']}" style="float: left; margin-right: 20px; width: 60px; height: 60px;">
+                <div class="resource-title">{resource['title']}</div>
+                <div class="resource-difficulty {difficulty_class}">{resource['difficulty']}</div>
+                <div class="resource-description">{resource['description']}</div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+        if st.button(f"查看 {resource['title']} 内容", key=resource['title']):
+            file_path = os.path.join(os.path.dirname(__file__), 'markdown', resource['file'])
+            try:
+                with open(file_path, 'r', encoding='utf-8') as file:
+                    content = file.read()
+                    html = markdown.markdown(content)
+                    st.markdown(html, unsafe_allow_html=True)
+            except FileNotFoundError:
+                st.error(f"抱歉，无法找到 {resource['title']} 的内容文件。我们正在努力修复这个问题。")
 
     # 添加互动性：随机推荐功能
     if st.button("随机推荐资源"):
