@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 
 def load_team_data():
     return {
@@ -13,19 +14,19 @@ def load_team_data():
                 "name": "刘曜畅",
                 "position": "CEO",
                 "bio": "拥有10年科技行业经验，引领公司走向创新与成功",
-                "avatar": "static/images/Alexander.jpg"
+                "avatar": "Alexander.jpg"
             },
             {
                 "name": "辛怡佳",
                 "position": "CFO",
                 "bio": "资深财务专家，擅长财务战略规划和风险管理",
-                "avatar": "static/images/XinYijia.jpg"
+                "avatar": "XinYijia.jpg"
             },
             {
                 "name": "陈逸轩",
                 "position": "产品经理",
                 "bio": "擅长用户体验设计",
-                "avatar": "static/images/zhubo.jpg"
+                "avatar": "zhubo.jpg"
             }
         ]
     }
@@ -66,17 +67,21 @@ def render_team_info():
     col1, col2, col3 = st.columns(3)
     for i, member in enumerate(team_data["members"]):
         with [col1, col2, col3][i]:
-            st.markdown(
-                f"""
-                <div class="team-member">
-                    <div class="member-avatar" style="background-image: url('{member['avatar']}')"></div>
-                    <h3>{member['name']}</h3>
-                    <p class="position">{member['position']}</p>
-                    <p class="bio">{member['bio']}</p>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
+            image_path = os.path.join("static", "images", member['avatar'])
+            if os.path.exists(image_path):
+                st.markdown(
+                    f"""
+                    <div class="team-member">
+                        <div class="member-avatar" style="background-image: url('{image_path}')"></div>
+                        <h3>{member['name']}</h3>
+                        <p class="position">{member['position']}</p>
+                        <p class="bio">{member['bio']}</p>
+                    </div>
+                    """,
+                    unsafe_allow_html=True
+                )
+            else:
+                st.warning(f"无法加载 {member['name']} 的头像图片")
 
     # 添加CSS和JavaScript
     st.markdown(
