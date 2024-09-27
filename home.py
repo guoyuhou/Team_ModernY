@@ -1,13 +1,5 @@
 import streamlit as st
-from streamlit_lottie import st_lottie
-import requests
 import random
-
-def load_lottie_url(url: str):
-    r = requests.get(url)
-    if r.status_code != 200:
-        return None
-    return r.json()
 
 def render_home():
 
@@ -21,9 +13,6 @@ def render_home():
         """,
         unsafe_allow_html=True
     )
-    
-    # 显示欢迎动画
-    st_lottie(lottie_welcome, height=300, key="welcome")
     
     try:
         # 动态数据
