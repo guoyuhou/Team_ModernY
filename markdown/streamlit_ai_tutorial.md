@@ -5,32 +5,34 @@
 
 ## 框架搭建
 - 生成文件目录，一般性的Streamlit文件目录实例如下：
-    (team_platform/
-    │
-    ├── app.py                 # 主应用入口
-    ├── config.py              # 配置文件
-    ├── requirements.txt       # 依赖包列表
-    ├── packages.txt           # packages
-    │
-    ├── pages/                 # 页面模块
-    │   ├── home.py            # 首页
-    │   ├── team_info.py       # 团队信息页
-    │   ├── product_dev.py     # 产品开发流程页
-    │   └── learning_resources.py  # 学习资源页
-    │
-    ├── components/            # 可复用组件
-    │   ├── header.py          # 页头组件
-    │   ├── footer.py          # 页脚组件
-    │   └── sidebar.py         # 侧边栏组件
-    │
-    ├── static/                # 静态资源
-    │   ├── css/               # CSS文件
-    │   ├── js/                # JavaScript文件
-    │   └── images/            # 图片资源
-    │
-    └── data/                  # 数据文件夹
-        ├── team_data.json     # 团队信息数据
-        └── dev_process.json   # 开发流程数据)
+```plaintext
+team_platform/
+│
+├── app.py                 # 主应用入口
+├── config.py              # 配置文件
+├── requirements.txt       # 依赖包列表
+├── packages.txt           # packages
+│
+├── pages/                 # 页面模块
+│   ├── home.py            # 首页
+│   ├── team_info.py       # 团队信息页
+│   ├── product_dev.py     # 产品开发流程页
+│   └── learning_resources.py  # 学习资源页
+│
+├── components/            # 可复用组件
+│   ├── header.py          # 页头组件
+│   ├── footer.py          # 页脚组件
+│   └── sidebar.py         # 侧边栏组件
+│
+├── static/                # 静态资源
+│   ├── css/               # CSS文件
+│   ├── js/                # JavaScript文件
+│   └── images/            # 图片资源
+│
+└── data/                  # 数据文件夹
+    ├── team_data.json     # 团队信息数据
+    └── dev_process.json   # 开发流程数据
+```
 - 为每个文件编写相应的文件设计，确保剩下的AI开发存在基础
 - **Prompt**:
     1. 我们要做什么工作？
