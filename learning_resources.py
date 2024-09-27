@@ -33,7 +33,6 @@ def render_learning_resources():
         if content:
             if st.button("返回主页"):
                 st.session_state.learning_page = 'main'
-                st.experimental_rerun()
             st.markdown(content, unsafe_allow_html=True)
         else:
             st.error("抱歉，无法找到内容文件。我们正在努力修复这个问题。")
