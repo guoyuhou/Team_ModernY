@@ -5,10 +5,6 @@ DB_NAME = "team_platform"
 DB_USER = "admin"
 DB_PASSWORD = "your_password_here"
 
-# Redis配置
-REDIS_HOST = "localhost"
-REDIS_PORT = 6379
-
 # RabbitMQ配置
 RABBITMQ_HOST = "localhost"
 RABBITMQ_PORT = 5672
@@ -27,10 +23,6 @@ ALLOWED_EXTENSIONS = {"txt", "pdf", "png", "jpg", "jpeg", "gif"}
 
 # 分页设置
 ITEMS_PER_PAGE = 20
-
-# 缓存设置
-CACHE_TYPE = "redis"
-CACHE_DEFAULT_TIMEOUT = 300
 
 # 日志设置
 LOG_LEVEL = "INFO"

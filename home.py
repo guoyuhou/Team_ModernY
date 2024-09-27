@@ -1,21 +1,13 @@
 import streamlit as st
 from utils.db_utils import get_team_info, get_latest_updates
-from utils.cache_utils import cache_data
-
-@cache_data(ttl=3600)
-def load_team_data():
-    return get_team_info()
-
-@cache_data(ttl=300)
-def load_latest_updates():
-    return get_latest_updates()
 
 def render_home():
     st.title("欢迎来到我们的团队内部平台")
     
     try:
-        # 加载团队信息
-        team_data = load_team_data()
+        # 直接调用函数，不使用缓存
+        team_data = get_team_info()
+        updates = get_latest_updates()
         
         # 团队简介
         st.header("关于我们")
@@ -38,7 +30,6 @@ def render_home():
         
         # 最新动态
         st.header("最新动态")
-        updates = load_latest_updates()
         if updates:
             for update in updates:
                 with st.expander(f"{update.get('date', '')} - {update.get('title', '')}"):
@@ -74,8 +65,6 @@ def render_home():
     except Exception as e:
         st.error(f"加载页面时发生错误: {str(e)}")
         st.write("请检查数据库连接和数据格式是否正确。")
-
-__all__ = ['render_home']
 
 if __name__ == "__main__":
     render_home()

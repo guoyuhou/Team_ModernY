@@ -1,8 +1,6 @@
 import streamlit as st
 from utils.db_utils import get_learning_resources
-from utils.cache_utils import cache_data
 
-@cache_data(ttl=3600)
 def load_learning_resources():
     return get_learning_resources()
 
