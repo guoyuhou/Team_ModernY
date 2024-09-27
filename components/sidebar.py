@@ -11,7 +11,6 @@ def load_lottie_url(url: str):
 
 def render():
     # 加载动画
-    lottie_sidebar = load_lottie_url("https://assets3.lottiefiles.com/packages/lf20_jtbfg2nb.json")
     
     st.sidebar.markdown(
         """
