@@ -20,31 +20,31 @@ def load_markdown_file(file_name):
     except FileNotFoundError:
         return None
 
-def main():
-    st.set_page_config(page_title="学习资源宝库", layout="wide")
+def render_learning_resources():
+    st.title("学习资源宝库")
+    
+    if 'learning_page' not in st.session_state:
+        st.session_state.learning_page = 'main'
 
-    if 'page' not in st.session_state:
-        st.session_state.page = 'main'
-
-    st.sidebar.title("导航")
-    if st.sidebar.button("主页"):
-        st.session_state.page = 'main'
-
-    if st.session_state.page == 'main':
-        render_main_page()
+    if st.session_state.learning_page == 'main':
+        render_main_learning_page()
     else:
-        content = load_markdown_file(st.session_state.page)
+        content = load_markdown_file(st.session_state.learning_page)
         if content:
+            if st.button("返回主页"):
+                st.session_state.learning_page = 'main'
+                st.experimental_rerun()
             st.markdown(content, unsafe_allow_html=True)
         else:
             st.error("抱歉，无法找到内容文件。我们正在努力修复这个问题。")
+            if st.button("返回主页"):
+                st.session_state.learning_page = 'main'
+                st.experimental_rerun()
 
-def render_main_page():
-    st.title("学习资源宝库")
-    
+def render_main_learning_page():
     lottie_url = "https://assets5.lottiefiles.com/packages/lf20_v1yudlrx.json"
     lottie_json = load_lottie_url(lottie_url)
-    st_lottie(lottie_json, speed=1, height=200, key="initial")
+    st_lottie(lottie_json, speed=1, height=200, key="learning_lottie")
 
     resources = [
         {"title": "Streamlit框架+AI应用构建", "description": "学习如何使用Streamlit构建AI应用", "file": "streamlit_ai_tutorial.md", "icon": "https://img.icons8.com/color/48/000000/python.png", "difficulty": "中级"},
@@ -61,7 +61,7 @@ def render_main_page():
             st.write(resource['description'])
             st.write(f"难度：{resource['difficulty']}")
             if st.button(f"查看 {resource['title']} 内容", key=resource['title']):
-                st.session_state.page = resource['file']
+                st.session_state.learning_page = resource['file']
                 st.experimental_rerun()
 
 if __name__ == "__main__":
