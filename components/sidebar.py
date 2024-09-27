@@ -16,20 +16,20 @@ def render():
     st.sidebar.markdown(
         """
         <div class="sidebar-header">
-            <h3>创新导航</h3>
+            <h3>导航</h3>
         </div>
         """,
         unsafe_allow_html=True
     )
     
     # 显示动画
-    st_lottie(lottie_sidebar, height=100, key="sidebar")
+    st_lottie(lottie_sidebar, height=80, key="sidebar")
     
     menu_items = {
-        "创新中心": "home",
-        "先锋团队": "team_info",
-        "创意孵化": "product_dev",
-        "知识宝库": "learning_resources"
+        "首页": "home",
+        "团队": "team_info",
+        "创意": "product_dev",
+        "学习": "learning_resources"
     }
     
     for key, value in menu_items.items():
@@ -37,62 +37,61 @@ def render():
             st.session_state.page = value
     
     st.sidebar.markdown("---")
-    st.sidebar.info("创新版本: v2.0.0 - 突破边界")
+    st.sidebar.info("版本: v2.0.0")
     
     # 添加互动元素
-    user_idea = st.sidebar.text_input("分享你的创新灵感:")
-    if st.sidebar.button("提交灵感"):
+    user_idea = st.sidebar.text_input("创新灵感:")
+    if st.sidebar.button("提交"):
         st.sidebar.balloons()
-        st.sidebar.success("感谢你的创意贡献！")
+        st.sidebar.success("谢谢分享！")
     
     # 添加每日创新提示
     daily_tips = [
-        "尝试从不同角度看问题",
-        "与团队成员进行头脑风暴",
-        "阅读一篇关于新兴技术的文章",
-        "花15分钟冥想，让思维放空",
-        "尝试解决一个小的技术挑战"
+        "换个角度看问题",
+        "头脑风暴",
+        "读篇新技术文章",
+        "15分钟冥想",
+        "解决小技术难题"
     ]
     st.sidebar.markdown("---")
-    st.sidebar.subheader("每日创新提示")
+    st.sidebar.subheader("今日提示")
     st.sidebar.info(random.choice(daily_tips))
     
     # 添加创新进度追踪
     st.sidebar.markdown("---")
-    st.sidebar.subheader("创新进度")
-    progress = st.sidebar.slider("本周创新目标完成度", 0, 100, 50)
+    st.sidebar.subheader("进度")
+    progress = st.sidebar.slider("本周目标", 0, 100, 50)
     st.sidebar.progress(progress)
     
     # 添加快速笔记功能
     st.sidebar.markdown("---")
-    st.sidebar.subheader("快速笔记")
-    note = st.sidebar.text_area("记录你的灵感:", height=100)
-    if st.sidebar.button("保存笔记"):
-        # 这里可以添加保存笔记的逻辑
-        st.sidebar.success("笔记已保存！")
+    st.sidebar.subheader("笔记")
+    note = st.sidebar.text_area("灵感:", height=80)
+    if st.sidebar.button("保存"):
+        st.sidebar.success("已保存！")
     
     st.markdown(
         """
         <style>
         .sidebar-header {
-            padding: 0.5rem;
+            padding: 0.3rem;
             background: #f0f0f0;
             color: #333;
             text-align: center;
-            margin-bottom: 0.5rem;
-            border-radius: 5px;
+            margin-bottom: 0.3rem;
+            border-radius: 3px;
         }
         .stButton>button {
             width: 100%;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.2rem;
             border: 1px solid #ddd;
             background: white;
             color: #333;
             transition: all 0.3s ease;
-            border-radius: 5px;
+            border-radius: 3px;
             font-weight: normal;
-            font-size: 0.9em;
-            padding: 0.3rem;
+            font-size: 0.8em;
+            padding: 0.2rem;
         }
         .stButton>button:hover {
             background: #f0f0f0;
