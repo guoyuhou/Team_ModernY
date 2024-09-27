@@ -1,7 +1,14 @@
 import streamlit as st
+import requests
+from io import BytesIO
 
 def render():
-    st.image("static/images/logo.png", width=200)
+    # 从网上获取一个示例logo图片
+    logo_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Streamlit-logo-primary-colormark-darktext.png/320px-Streamlit-logo-primary-colormark-darktext.png"
+    response = requests.get(logo_url)
+    logo_image = BytesIO(response.content)
+    
+    st.image(logo_image, width=200)
     st.markdown(
         """
         <style>
