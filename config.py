@@ -1,21 +1,50 @@
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
-
 # 数据库配置
-DB_HOST = os.getenv("DB_HOST")
-DB_PORT = os.getenv("DB_PORT")
-DB_NAME = os.getenv("DB_NAME")
-DB_USER = os.getenv("DB_USER")
-DB_PASSWORD = os.getenv("DB_PASSWORD")
+DB_HOST = "localhost"
+DB_PORT = 27017
+DB_NAME = "team_platform"
+DB_USER = "admin"
+DB_PASSWORD = "your_password_here"
 
 # Redis配置
-REDIS_HOST = os.getenv("REDIS_HOST")
-REDIS_PORT = os.getenv("REDIS_PORT")
+REDIS_HOST = "localhost"
+REDIS_PORT = 6379
 
 # RabbitMQ配置
-RABBITMQ_HOST = os.getenv("RABBITMQ_HOST")
-RABBITMQ_PORT = os.getenv("RABBITMQ_PORT")
+RABBITMQ_HOST = "localhost"
+RABBITMQ_PORT = 5672
 
-# 其他配置项...
+# 其他配置项
+DEBUG = True
+SECRET_KEY = "your_secret_key_here"
+
+# 应用程序设置
+APP_NAME = "团队内部平台"
+APP_VERSION = "1.0.0"
+
+# 文件上传设置
+UPLOAD_FOLDER = "./uploads"
+ALLOWED_EXTENSIONS = {"txt", "pdf", "png", "jpg", "jpeg", "gif"}
+
+# 分页设置
+ITEMS_PER_PAGE = 20
+
+# 缓存设置
+CACHE_TYPE = "redis"
+CACHE_DEFAULT_TIMEOUT = 300
+
+# 日志设置
+LOG_LEVEL = "INFO"
+LOG_FILE = "app.log"
+
+# API设置
+API_BASE_URL = "/api/v1"
+
+# 邮件设置
+MAIL_SERVER = "smtp.example.com"
+MAIL_PORT = 587
+MAIL_USE_TLS = True
+MAIL_USERNAME = "your_email@example.com"
+MAIL_PASSWORD = "your_email_password"
+
+# 时区设置
+TIMEZONE = "Asia/Shanghai"
