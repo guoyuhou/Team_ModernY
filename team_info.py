@@ -46,31 +46,37 @@ def render_team_info():
     )
     
     st.markdown("<h2 class='section-title'>团队文化</h2>", unsafe_allow_html=True)
-    for value in team_data["culture"]:
-        st.markdown(
-            f"""
-            <div class="culture-item">
-                <div class="culture-icon">{value["icon"]}</div>
-                <h3>{value["title"]}</h3>
-                <p>{value["description"]}</p>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+    
+    col1, col2, col3 = st.columns(3)
+    for i, value in enumerate(team_data["culture"]):
+        with [col1, col2, col3][i]:
+            st.markdown(
+                f"""
+                <div class="culture-item">
+                    <div class="culture-icon">{value["icon"]}</div>
+                    <h3>{value["title"]}</h3>
+                    <p>{value["description"]}</p>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
     
     st.markdown("<h2 class='section-title'>团队成员</h2>", unsafe_allow_html=True)
-    for member in team_data["members"]:
-        st.markdown(
-            f"""
-            <div class="team-member">
-                <div class="member-avatar" style="background-image: url('{member['avatar']}')"></div>
-                <h3>{member['name']}</h3>
-                <p class="position">{member['position']}</p>
-                <p class="bio">{member['bio']}</p>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+    
+    col1, col2, col3 = st.columns(3)
+    for i, member in enumerate(team_data["members"]):
+        with [col1, col2, col3][i]:
+            st.markdown(
+                f"""
+                <div class="team-member">
+                    <div class="member-avatar" style="background-image: url('{member['avatar']}')"></div>
+                    <h3>{member['name']}</h3>
+                    <p class="position">{member['position']}</p>
+                    <p class="bio">{member['bio']}</p>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
 
     # 添加CSS和JavaScript
     st.markdown(
