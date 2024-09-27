@@ -22,8 +22,8 @@ def render_home():
             "description": "我们是一群跨界创新者，融合科技、艺术与人文，致力于塑造更美好的未来。我们相信，真正的创新源于多元思维的碰撞和跨界合作的力量。",
             "vision": "成为引领全球创新生态系统的先驱力量，推动人类文明向更高远的未来迈进。",
             "values": [
-                {"title": "突破边界", "description": "挑战常规，创造不可能", "icon": "🚀", "color": "#FF6B6B"},
-                {"title": "共创共赢", "description": "开放协作，激发无限可能", "icon": "🤝", "color": "#4ECDC4"},
+                {"title": "突破边界", "description": "挑战常规，创造创新", "icon": "🚀", "color": "#FF6B6B"},
+                {"title": "共创共赢", "description": "开放协作，激发潜力", "icon": "🤝", "color": "#4ECDC4"},
                 {"title": "责任创新", "description": "以人为本，科技向善", "icon": "🌟", "color": "#45B7D1"},
                 {"title": "持续学习", "description": "拥抱变化，永不止步", "icon": "🧠", "color": "#FFA07A"},
                 {"title": "跨界融合", "description": "打破壁垒，创造奇迹", "icon": "🌈", "color": "#98D8C8"}
@@ -94,7 +94,7 @@ def render_home():
             mode = "gauge+number+delta",
             value = innovation_index,
             domain = {'x': [0, 1], 'y': [0, 1]},
-            title = {'text': "创新指数", 'font': {'size': 24}},
+            title = {'text': "创新指数", 'font': {'size': 20}},
             delta = {'reference': 80, 'increasing': {'color': "RebeccaPurple"}},
             gauge = {
                 'axis': {'range': [None, 100], 'tickwidth': 1, 'tickcolor': "darkblue"},
@@ -111,6 +111,7 @@ def render_home():
                     'thickness': 0.75,
                     'value': 90}}))
         
+        fig.update_layout(height=300)  # 减小图表高度
         st.plotly_chart(fig, use_container_width=True)
         
         # 最新动态
@@ -164,7 +165,7 @@ def render_home():
         member_counts = [member['count'] for member in members]
         
         fig = go.Figure(data=[go.Pie(labels=departments, values=member_counts, hole=.3)])
-        fig.update_layout(title_text="团队组成")
+        fig.update_layout(title_text="团队组成", height=300)  # 减小图表高度
         st.plotly_chart(fig, use_container_width=True)
         
         col1, col2, col3 = st.columns(3)

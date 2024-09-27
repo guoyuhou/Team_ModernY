@@ -49,6 +49,8 @@ def render_main_learning_page():
         {"title": "Streamlit框架+AI应用构建", "description": "学习如何使用Streamlit构建AI应用", "file": "streamlit_ai_tutorial.md", "icon": "https://img.icons8.com/color/48/000000/python.png", "difficulty": "中级"},
         {"title": "Django框架+AI应用搭建", "description": "使用Django框架搭建AI应用", "file": "django_ai_tutorial.md", "icon": "https://img.icons8.com/color/48/000000/django.png", "difficulty": "高级"},
         {"title": "Github使用教程", "description": "学习如何使用Github进行版本控制", "file": "github_tutorial.md", "icon": "https://img.icons8.com/color/48/000000/github.png", "difficulty": "初级"},
+        {"title": "前端设计大全", "description": "全面学习前端设计技巧和最佳实践", "file": "frontend_design_tutorial.md", "icon": "https://img.icons8.com/color/48/000000/html-5.png", "difficulty": "中级"},
+        {"title": "后端工具大全", "description": "探索各种后端开发工具和框架", "file": "backend_tools_tutorial.md", "icon": "https://img.icons8.com/color/48/000000/server.png", "difficulty": "高级"},
     ]
 
     for resource in resources:
