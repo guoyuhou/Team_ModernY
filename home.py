@@ -16,7 +16,7 @@ def render_home():
     st.markdown(
         """
         <div class="welcome-section">
-            <h1 class="glitch" data-text="未来创新实验室">未来创新实验室</h1>
+            <h1 class="glitch" data-text="ModernY">ModernY</h1>
             <p class="subtitle">在这里，我们不仅激发灵感，更是创造未来的先锋。</p>
             <div class="scroll-down"></div>
         </div>

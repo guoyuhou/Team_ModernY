@@ -4,7 +4,7 @@ import home, team_info, product_dev
 from learning_resources import render_learning_resources
 
 def main():
-    st.set_page_config(page_title="团队内部平台", layout="wide")
+    st.set_page_config(page_title="ModernY平台", layout="wide")
     
     # 添加加载动画
     with st.spinner("正在加载..."):
