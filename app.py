@@ -1,6 +1,7 @@
 import streamlit as st
 from components import header, sidebar, footer
-import home, team_info, product_dev, learning_resources
+import home, team_info, product_dev
+from learning_resources import render_learning_resources
 
 def main():
     st.set_page_config(page_title="团队内部平台", layout="wide")
@@ -18,7 +19,7 @@ def main():
         elif page == "product_dev":
             product_dev.render_product_dev()
         elif page == "learning_resources":
-            learning_resources.render_learning_resources()
+            render_learning_resources()
         
         footer.render()
 
