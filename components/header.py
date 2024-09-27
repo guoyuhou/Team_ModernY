@@ -1,14 +1,17 @@
 import streamlit as st
-import requests
-from io import BytesIO
 
 def render():
-    # 从网上获取一个示例logo图片
-    logo_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Streamlit-logo-primary-colormark-darktext.png/320px-Streamlit-logo-primary-colormark-darktext.png"
-    response = requests.get(logo_url)
-    logo_image = BytesIO(response.content)
+    # 使用在线图片URL替代本地图片
+    logo_url = "https://img.freepik.com/free-vector/flat-design-ac-logo-template_23-2149282639.jpg"
     
-    st.image(logo_image, width=200)
+    try:
+        # 直接使用st.image加载在线图片
+        st.image(logo_url, width=200)
+    except Exception as e:
+        st.error(f"无法加载logo图片: {str(e)}")
+        # 使用文本替代logo
+        st.title("团队内部平台")
+    
     st.markdown(
         """
         <style>
