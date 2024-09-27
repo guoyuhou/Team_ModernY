@@ -5,7 +5,6 @@ import requests
 import markdown
 import os
 
-
 def load_lottie_url(url: str):
     r = requests.get(url)
     if r.status_code != 200:
