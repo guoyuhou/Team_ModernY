@@ -3,6 +3,7 @@ aiortc==1.9.0
 altair==5.4.1
 annotated-types==0.7.0
 anyio==4.6.0
+async-timeout==4.0.3
 attrs==24.2.0
 av==12.3.0
 beautifulsoup4==4.12.3
@@ -67,12 +68,14 @@ pyee==12.0.0
 Pygments==2.18.0
 pylibsrtp==0.10.0
 pymdown-extensions==10.10.1
+pymongo==4.9.1
 pyOpenSSL==24.2.1
 pyparsing==3.1.4
 python-dateutil==2.9.0.post0
 pytz==2024.2
 PyYAML==6.0.2
 rdflib==7.0.0
+redis==5.0.8
 referencing==0.35.1
 requests==2.32.3
 rich==13.8.1
