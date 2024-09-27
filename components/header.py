@@ -40,6 +40,7 @@ def render():
             60% {{ color: {colors[3]}; }}
             80% {{ color: {colors[4]}; }}
         }}
+        </style>
         <script>
         function changeSlogan() {{
             const slogans = {slogans};
