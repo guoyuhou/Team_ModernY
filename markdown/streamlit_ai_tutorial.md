@@ -5,7 +5,7 @@
 
 ## 框架搭建
 - 生成文件目录，一般性的Streamlit文件目录实例如下：
-    team_platform/
+    (team_platform/
     │
     ├── app.py                 # 主应用入口
     ├── config.py              # 配置文件
@@ -30,7 +30,7 @@
     │
     └── data/                  # 数据文件夹
         ├── team_data.json     # 团队信息数据
-        └── dev_process.json   # 开发流程数据
+        └── dev_process.json   # 开发流程数据)
 - 为每个文件编写相应的文件设计，确保剩下的AI开发存在基础
 - **Prompt**:
     1. 我们要做什么工作？
