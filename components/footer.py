@@ -19,10 +19,10 @@ def render():
     """
     
     st.markdown(
-        """
+        f"""
         <style>
         @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
-        .footer {
+        .footer {{
             position: fixed;
             left: 0;
             bottom: 0;
@@ -33,36 +33,36 @@ def render():
             padding: 15px 0;
             font-size: 14px;
             box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-        }
-        .footer-content {
+        }}
+        .footer-content {{
             display: flex;
             justify-content: space-between;
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-        }
-        .footer-quote {
+        }}
+        .footer-quote {{
             font-style: italic;
             font-weight: bold;
-        }
-        .footer-social a {
+        }}
+        .footer-social a {{
             color: #262730;
             margin: 0 10px;
             font-size: 18px;
             transition: color 0.3s ease;
-        }
-        .footer-social a:hover {
+        }}
+        .footer-social a:hover {{
             color: #4CAF50;
-        }
+        }}
         </style>
         <div class="footer">
             <div class="footer-content">
-                <div class="footer-quote">{}</div>
+                <div class="footer-quote">{random.choice(inspirational_quotes)}</div>
                 <div>© 2023 未来创新实验室. 激发灵感，创造未来。</div>
-                <div class="footer-social">{}</div>
+                <div class="footer-social">{social_icons}</div>
             </div>
         </div>
-        """.format(random.choice(inspirational_quotes), social_icons),
+        """,
         unsafe_allow_html=True
     )
