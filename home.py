@@ -63,7 +63,7 @@ def render_home():
         
         # 团队简介
         st.header("我们的使命")
-        st.markdown(f"<p class='team-description animate-text'>{team_data.get('description', '团队描述暂未提供')}</p>", unsafe_allow_html=True)
+        st.markdown(f"<p class='team-description animate-on-scroll'>{team_data.get('description', '团队描述暂未提供')}</p>", unsafe_allow_html=True)
         
         # 团队愿景
         st.subheader("愿景")
@@ -77,7 +77,7 @@ def render_home():
             for idx, value in enumerate(values):
                 with cols[idx]:
                     st.markdown(f"""
-                    <div class='value-card animate-card' style='background-color: {value["color"]}'>
+                    <div class='value-card animate-on-scroll' style='background-color: {value["color"]}'>
                         <div class='value-icon'>{value['icon']}</div>
                         <h3>{value.get('title', '')}</h3>
                         <p>{value.get('description', '')}</p>
@@ -121,9 +121,9 @@ def render_home():
                 with st.expander(f"{update.get('date', '')} - {update.get('title', '')}"):
                     cols = st.columns([2, 1])
                     with cols[0]:
-                        st.markdown(f"<p class='update-content animate-text'>{update.get('content', '')}</p>", unsafe_allow_html=True)
+                        st.markdown(f"<p class='update-content animate-on-scroll'>{update.get('content', '')}</p>", unsafe_allow_html=True)
                         if update.get("link"):
-                            st.markdown(f"<a href='{update['link']}' target='_blank' class='learn-more-btn animate-btn'>深入探索</a>", unsafe_allow_html=True)
+                            st.markdown(f"<a href='{update['link']}' target='_blank' class='learn-more-btn animate-on-scroll'>深入探索</a>", unsafe_allow_html=True)
                     with cols[1]:
                         st.image(update.get('image', 'https://via.placeholder.com/300x200'), use_column_width=True)
         else:
@@ -403,14 +403,15 @@ def render_home():
             animation: fadeInUp 1s ease-out 0.5s both;
         }
         
-        .animate-text {
+        .animate-on-scroll {
             opacity: 0;
-            animation: fadeIn 1s ease-out 1s forwards;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
         }
         
-        .animate-card {
-            opacity: 0;
-            animation: fadeInScale 0.5s ease-out forwards;
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .animate-btn {
@@ -439,26 +440,6 @@ def render_home():
             }
         }
         
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        
-        @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-        
         @keyframes pulse {
             0% {
                 transform: scale(1);
@@ -473,33 +454,30 @@ def render_home():
         </style>
         
         <script>
-        function animateCards() {
-            const cards = document.querySelectorAll('.animate-card');
-            cards.forEach((card, index) => {
-                setTimeout(() => {
-                    card.style.animation = 'fadeInScale 0.5s ease-out forwards';
-                }, index * 100);
+        function handleMouseMove(event) {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            elements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                const elementCenterY = rect.top + rect.height / 2;
+                const distanceFromCenter = Math.abs(event.clientY - elementCenterY);
+                const maxDistance = window.innerHeight / 2;
+                const opacity = 1 - (distanceFromCenter / maxDistance);
+                
+                element.style.opacity = Math.max(0, Math.min(1, opacity));
+                
+                if (opacity > 0.5 && !element.classList.contains('visible')) {
+                    element.classList.add('visible');
+                } else if (opacity <= 0.5 && element.classList.contains('visible')) {
+                    element.classList.remove('visible');
+                }
             });
         }
         
-        function animateOnScroll() {
-            const elements = document.querySelectorAll('.animate-text, .animate-card');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.animation = entry.target.classList.contains('animate-card') ? 
-                            'fadeInScale 0.5s ease-out forwards' : 'fadeIn 1s ease-out forwards';
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            elements.forEach(el => observer.observe(el));
-        }
+        document.addEventListener('mousemove', handleMouseMove);
         
-        document.addEventListener('DOMContentLoaded', (event) => {
-            animateCards();
-            animateOnScroll();
+        // 初始化时触发一次，以显示视口中的元素
+        document.addEventListener('DOMContentLoaded', () => {
+            handleMouseMove({ clientY: window.innerHeight / 2 });
         });
         </script>
         """,
