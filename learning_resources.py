@@ -32,7 +32,7 @@ def render_markdown_page(content):
         unsafe_allow_html=True
     )
     if st.button("返回"):
-        st.session_state.page = "main"
+        st.experimental_rerun()
     st.markdown(content, unsafe_allow_html=True)
 
 def render_learning_resources():
@@ -138,6 +138,7 @@ def render_learning_resources():
             st.error(f"抱歉，无法找到内容文件。我们正在努力修复这个问题。")
             if st.button("返回主页"):
                 st.session_state.page = "main"
+                st.experimental_rerun()
 
 if __name__ == "__main__":
     render_learning_resources()
