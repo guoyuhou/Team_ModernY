@@ -127,25 +127,6 @@ def render_learning_resources():
             if st.button(f"查看 {resource['title']} 内容", key=resource['title']):
                 st.session_state.page = resource['file']
 
-        # 添加互动性：随机推荐功能
-        if st.button("随机推荐资源"):
-            random_resource = random.choice(resources)
-            st.success(f"推荐资源：{random_resource['title']} - {random_resource['description']}")
-
-        # 添加用户反馈功能
-        st.subheader("资源反馈")
-        feedback = st.text_area("请分享您的学习体验或对资源的建议：")
-        if st.button("提交反馈"):
-            st.success("感谢您的反馈！我们会认真考虑您的建议。")
-
-        # 添加学习进度追踪
-        st.subheader("学习进度追踪")
-        for resource in resources:
-            progress = st.slider(f"{resource['title']} 学习进度", 0, 100, 0, key=f"progress_{resource['title']}")
-            if progress == 100:
-                st.balloons()
-                st.success(f"恭喜你完成 {resource['title']} 的学习！")
-
     else:
         file_path = os.path.join(os.path.dirname(__file__), 'markdown', st.session_state.page)
         try:
