@@ -103,7 +103,7 @@ def render_learning_resources():
                 unsafe_allow_html=True
             )
             if st.button(f"查看 {resource['title']} 内容", key=resource['title']):
-                file_path = os.path.join(os.path.dirname(__file__), resource['file'])
+                file_path = os.path.join(os.path.dirname(__file__), 'markdown', resource['file'])
                 try:
                     with open(file_path, 'r', encoding='utf-8') as file:
                         content = file.read()
