@@ -12,11 +12,9 @@ def render():
     
     # 创新元素：动态颜色
     colors = ["#FF6B6B", "#4ECDC4", "#45B7D1", "#FFA07A", "#98D8C8"]
-    
     st.markdown(
         f"""
         <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
         .welcome-section {{
             text-align: center;
             padding: 2rem;
@@ -34,7 +32,6 @@ def render():
             color: #fff;
             font-size: 1.2rem;
             font-weight: bold;
-            animation: colorChange 10s infinite;
         }}
         @keyframes colorChange {{
             0%, 100% {{ color: {colors[0]}; }}
