@@ -15,43 +15,29 @@ def render():
     
     st.markdown(
         f"""
-        <div class="header">
-            <div class="logo-container">
-                <div class="logo-text">创新</div>
-            </div>
-            <h1 id="dynamic-slogan">{random.choice(slogans)}</h1>
+        <div class="welcome-section">
+            <h1>欢迎来到未来创新实验室</h1>
+            <p id="dynamic-slogan">{random.choice(slogans)}</p>
         </div>
         <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
-        .header {{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        .welcome-section {{
+            text-align: center;
+            padding: 2rem;
             background: linear-gradient(45deg, #f3ec78, #af4261);
-            padding: 1rem;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }}
-        .logo-container {{
-            width: 60px;
-            height: 60px;
-            background-color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        .welcome-section h1 {{
+            color: #fff;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }}
-        .logo-text {{
-            font-family: 'Roboto', sans-serif;
+        .welcome-section p {{
+            color: #fff;
             font-size: 1.2rem;
             font-weight: bold;
-            color: #333;
-        }}
-        .header h1 {{
-            color: #fff;
-            font-size: 1.8rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             animation: colorChange 10s infinite;
         }}
         @keyframes colorChange {{
