@@ -21,7 +21,6 @@ def render_product_dev():
             "name": "灵感迸发",
             "description": "捕捉创意火花，洞察用户需求",
             "icon": "lightbulb",
-            "color": "#FFD700",
             "steps": [
                 {
                     "title": "创意风暴",
@@ -39,7 +38,6 @@ def render_product_dev():
             "name": "概念设计",
             "description": "将创意转化为可视化概念",
             "icon": "pencil-alt",
-            "color": "#4CAF50",
             "steps": [
                 {
                     "title": "原型魔法",
@@ -57,7 +55,6 @@ def render_product_dev():
             "name": "技术锻造",
             "description": "将创意付诸实践，构建产品骨架",
             "icon": "code",
-            "color": "#2196F3",
             "steps": [
                 {
                     "title": "代码编织",
@@ -75,7 +72,6 @@ def render_product_dev():
             "name": "品质淬炼",
             "description": "全方位测试，打造完美体验",
             "icon": "vial",
-            "color": "#9C27B0",
             "steps": [
                 {
                     "title": "功能探索",
@@ -93,7 +89,6 @@ def render_product_dev():
             "name": "闪耀登场",
             "description": "产品华丽亮相，开启市场征程",
             "icon": "rocket",
-            "color": "#FF5722",
             "steps": [
                 {
                     "title": "云端部署",
@@ -113,7 +108,7 @@ def render_product_dev():
         with st.container():
             col1, col2 = st.columns([1, 3])
             with col1:
-                st.markdown(f'<i class="fas fa-{stage["icon"]} fa-3x" style="color: {stage["color"]};"></i>', unsafe_allow_html=True)
+                st.markdown(f'<i class="fas fa-{stage["icon"]} fa-3x"></i>', unsafe_allow_html=True)
             with col2:
                 st.subheader(stage["name"])
                 st.write(stage["description"])
@@ -139,51 +134,40 @@ def render_product_dev():
         <style>
         @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
         .stExpander {
-            background: linear-gradient(145deg, #ffffff, #f0f0f0);
-            border-radius: 20px;
-            margin-bottom: 20px;
-            box-shadow: 5px 5px 15px #d1d1d1, -5px -5px 15px #ffffff;
-            transition: all 0.3s ease;
-        }
-        .stExpander:hover {
-            transform: translateY(-5px);
-            box-shadow: 8px 8px 20px #d1d1d1, -8px -8px 20px #ffffff;
+            background-color: #ffffff;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
         }
         .stExpander > div:first-child {
-            border-bottom: 2px solid #e0e0e0;
-            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 10px;
             font-weight: bold;
-            color: #333;
         }
         .stButton>button {
             width: 100%;
-            border-radius: 30px;
+            border-radius: 5px;
             font-weight: bold;
-            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            background-color: #4CAF50;
             color: white;
             border: none;
-            padding: 15px 0;
-            font-size: 18px;
-            transition: all 0.3s ease;
-        }
-        .stButton>button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            padding: 10px 0;
+            font-size: 16px;
         }
         .tool-badge {
             display: inline-block;
             background-color: #e0e0e0;
             color: #333;
-            padding: 5px 10px;
-            border-radius: 15px;
-            margin: 5px;
+            padding: 3px 8px;
+            border-radius: 3px;
+            margin: 3px;
             font-size: 0.9em;
         }
         .stage-divider {
             border: 0;
             height: 1px;
-            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
-            margin: 30px 0;
+            background-color: #e0e0e0;
+            margin: 20px 0;
         }
         </style>
         """,
