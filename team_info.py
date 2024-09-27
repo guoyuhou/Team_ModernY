@@ -1,9 +1,7 @@
 import streamlit as st
 import json
 from utils.db_utils import get_team_info
-from utils.cache_utils import cache_data
 
-@cache_data(ttl=3600)
 def load_team_data():
     return get_team_info()
 
