@@ -1,6 +1,7 @@
 import streamlit as st
 from streamlit_lottie import st_lottie
 import requests
+import random
 
 def load_lottie_url(url: str):
     r = requests.get(url)
@@ -44,13 +45,39 @@ def render():
         st.sidebar.balloons()
         st.sidebar.success("感谢你的创意贡献！")
     
+    # 添加每日创新提示
+    daily_tips = [
+        "尝试从不同角度看问题",
+        "与团队成员进行头脑风暴",
+        "阅读一篇关于新兴技术的文章",
+        "花15分钟冥想，让思维放空",
+        "尝试解决一个小的技术挑战"
+    ]
+    st.sidebar.markdown("---")
+    st.sidebar.subheader("每日创新提示")
+    st.sidebar.info(random.choice(daily_tips))
+    
+    # 添加创新进度追踪
+    st.sidebar.markdown("---")
+    st.sidebar.subheader("创新进度")
+    progress = st.sidebar.slider("本周创新目标完成度", 0, 100, 50)
+    st.sidebar.progress(progress)
+    
+    # 添加快速笔记功能
+    st.sidebar.markdown("---")
+    st.sidebar.subheader("快速笔记")
+    note = st.sidebar.text_area("记录你的灵感:", height=100)
+    if st.sidebar.button("保存笔记"):
+        # 这里可以添加保存笔记的逻辑
+        st.sidebar.success("笔记已保存！")
+    
     st.markdown(
         """
         <style>
         .sidebar-header {
             padding: 0.5rem;
-            background: linear-gradient(135deg, #00c6ff, #0072ff);
-            color: white;
+            background: #f0f0f0;
+            color: #333;
             text-align: center;
             margin-bottom: 0.5rem;
             border-radius: 5px;
@@ -58,21 +85,20 @@ def render():
         .stButton>button {
             width: 100%;
             margin-bottom: 0.3rem;
-            border: none;
-            background: linear-gradient(45deg, #4CAF50, #45a049);
-            color: white;
+            border: 1px solid #ddd;
+            background: white;
+            color: #333;
             transition: all 0.3s ease;
-            border-radius: 10px;
-            font-weight: bold;
+            border-radius: 5px;
+            font-weight: normal;
             font-size: 0.9em;
             padding: 0.3rem;
         }
         .stButton>button:hover {
-            transform: scale(1.02);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background: #f0f0f0;
         }
         .sidebar .sidebar-content {
-            background: linear-gradient(180deg, #f8f9fa, #e9ecef);
+            background: white;
         }
         </style>
         """,
