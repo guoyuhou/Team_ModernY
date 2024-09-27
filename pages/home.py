@@ -10,7 +10,7 @@ def load_team_data():
 def load_latest_updates():
     return get_latest_updates()
 
-def render():
+def render_home():
     st.title("欢迎来到我们的团队内部平台")
     
     try:
@@ -75,8 +75,7 @@ def render():
         st.error(f"加载页面时发生错误: {str(e)}")
         st.write("请检查数据库连接和数据格式是否正确。")
 
-# 确保render函数可以被其他模块导入
-__all__ = ['render']
+__all__ = ['render_home']
 
 if __name__ == "__main__":
-    render()
+    render_home()

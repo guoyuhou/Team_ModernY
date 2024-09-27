@@ -6,7 +6,7 @@ from utils.cache_utils import cache_data
 def load_dev_process():
     return get_dev_process()
 
-def render():
+def render_product_dev():
     st.title("产品开发流程")
     
     dev_process = load_dev_process()
@@ -31,3 +31,8 @@ def render():
 def start_new_project():
     # 实现开始新项目的逻辑
     st.success("新项目已创建!")
+
+__all__ = ['render_product_dev']
+
+if __name__ == "__main__":
+    render_product_dev()

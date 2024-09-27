@@ -1,5 +1,8 @@
 import streamlit as st
-from pages import home, team_info, product_dev, learning_resources
+from pages.home import render_home
+from pages.team_info import render_team_info
+from pages.product_dev import render_product_dev
+from pages.learning_resources import render_learning_resources
 from components import header, footer, sidebar
 
 def main():
@@ -11,13 +14,13 @@ def main():
     page = st.sidebar.selectbox("选择页面", ["首页", "团队信息", "产品开发流程", "学习资源"])
     
     if page == "首页":
-        home.render()
+        render_home()
     elif page == "团队信息":
-        team_info.render()
+        render_team_info()
     elif page == "产品开发流程":
-        product_dev.render()
+        render_product_dev()
     elif page == "学习资源":
-        learning_resources.render()
+        render_learning_resources()
     
     footer.render()
 

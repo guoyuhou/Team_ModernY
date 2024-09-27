@@ -6,7 +6,7 @@ from utils.cache_utils import cache_data
 def load_learning_resources():
     return get_learning_resources()
 
-def render():
+def render_learning_resources():
     st.title("学习资源")
     
     resources = load_learning_resources()
@@ -28,3 +28,8 @@ def render():
 def add_new_resource():
     # 实现添加新资源的逻辑
     st.info("功能开发中...")
+
+__all__ = ['render_learning_resources']
+
+if __name__ == "__main__":
+    render_learning_resources()
