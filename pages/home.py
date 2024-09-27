@@ -60,7 +60,8 @@ def render():
     col2.metric("部门数量", len(departments))
     
     # 团队氛围图片
-    st.image("static/images/team_spirit.jpg", caption="我们的团队氛围", use_column_width=True)
+    team_spirit_image_url = "https://img.freepik.com/free-photo/group-diverse-people-having-business-meeting_53876-25060.jpg"
+    st.image(team_spirit_image_url, caption="我们的团队氛围", use_column_width=True)
 
 if __name__ == "__main__":
     render()
