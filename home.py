@@ -1,33 +1,20 @@
 import streamlit as st
 import random
 import time
-from streamlit_lottie import st_lottie
-import requests
 import plotly.graph_objects as go
 
-def load_lottie_url(url: str):
-    r = requests.get(url)
-    if r.status_code != 200:
-        return None
-    return r.json()
-
 def render_home():
-    # 动态欢迎界面
+    # 欢迎界面
     st.markdown(
         """
         <div class="welcome-section">
-            <h1 class="glitch" data-text="ModernY">ModernY</h1>
+            <h1>ModernY</h1>
             <p class="subtitle">在这里，我们不仅激发灵感，更是创造未来的先锋。</p>
             <div class="scroll-down"></div>
         </div>
         """,
         unsafe_allow_html=True
     )
-    
-    # 加载动画
-    lottie_url = "https://assets5.lottiefiles.com/packages/lf20_ystsffqy.json"
-    lottie_json = load_lottie_url(lottie_url)
-    st_lottie(lottie_json, speed=1, height=300, key="welcome_animation")
     
     try:
         # 动态数据
@@ -244,65 +231,6 @@ def render_home():
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
             position: relative;
-        }
-        
-        .glitch {
-            position: relative;
-        }
-        
-        .glitch::before,
-        .glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .glitch::before {
-            left: 2px;
-            text-shadow: -2px 0 #ff00c1;
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim 5s infinite linear alternate-reverse;
-        }
-        
-        .glitch::after {
-            left: -2px;
-            text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
-            animation: glitch-anim2 1s infinite linear alternate-reverse;
-        }
-        
-        @keyframes glitch-anim {
-          0% {
-            clip: rect(10px, 9999px, 31px, 0);
-            transform: skew(0.55deg);
-          }
-          5% {
-            clip: rect(70px, 9999px, 71px, 0);
-            transform: skew(0.03deg);
-          }
-          10% {
-            clip: rect(5px, 9999px, 32px, 0);
-            transform: skew(0.2deg);
-          }
-          /* ... 继续添加更多关键帧 ... */
-        }
-        
-        @keyframes glitch-anim2 {
-          0% {
-            clip: rect(65px, 9999px, 99px, 0);
-            transform: skew(0.84deg);
-          }
-          5% {
-            clip: rect(90px, 9999px, 66px, 0);
-            transform: skew(0.49deg);
-          }
-          10% {
-            clip: rect(54px, 9999px, 81px, 0);
-            transform: skew(0.29deg);
-          }
-          /* ... 继续添加更多关键帧 ... */
         }
         
         .subtitle {
