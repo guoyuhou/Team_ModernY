@@ -5,6 +5,7 @@ import requests
 import markdown
 import os
 
+
 def load_lottie_url(url: str):
     r = requests.get(url)
     if r.status_code != 200:
@@ -65,4 +66,4 @@ def render_main_learning_page():
                 st.session_state.learning_page = resource['file']
 
 if __name__ == "__main__":
-    main()
+    render_learning_resources()
