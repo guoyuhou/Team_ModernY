@@ -10,9 +10,7 @@ def load_lottie_url(url: str):
     return r.json()
 
 def render_home():
-    # 加载动画
-    lottie_welcome = load_lottie_url("https://assets5.lottiefiles.com/packages/lf20_V9t630.json")
-    
+
     # 欢迎部分
     st.markdown(
         """
