@@ -10,16 +10,24 @@ def main():
     with st.spinner("正在加载..."):
         header.render()
         
+        # 获取侧边栏选择的页面，并设置默认值
         page = sidebar.render()
+        if page is None:
+            page = "home"  # 设置默认页面
         
-        if page == "home":
-            home.render_home()
-        elif page == "team_info":
-            team_info.render_team_info()
-        elif page == "product_dev":
-            product_dev.render_product_dev()
-        elif page == "learning_resources":
-            render_learning_resources()
+        # 使用字典来映射页面名称和对应的渲染函数
+        page_functions = {
+            "home": home.render_home,
+            "team_info": team_info.render_team_info,
+            "product_dev": product_dev.render_product_dev,
+            "learning_resources": render_learning_resources
+        }
+        
+        # 如果页面存在于字典中，则调用对应的函数
+        if page in page_functions:
+            page_functions[page]()
+        else:
+            st.error(f"未知的页面: {page}")
         
         footer.render()
 
