@@ -32,6 +32,7 @@ def render_markdown_page(content):
         unsafe_allow_html=True
     )
     if st.button("返回"):
+        st.session_state.page = "main"
         st.experimental_rerun()
     st.markdown(content, unsafe_allow_html=True)
 
