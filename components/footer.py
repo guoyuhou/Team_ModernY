@@ -6,7 +6,7 @@ def render():
     inspirational_quotes = [
         "创新是进步的源泉",
         "突破常规，创造非凡",
-        "用创意改变世界",
+        "用创意改变世界", 
         "今天的想象就是明天的现实",
         "创新始于好奇心"
     ]
@@ -33,6 +33,7 @@ def render():
             padding: 15px 0;
             font-size: 14px;
             box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
         }}
         .footer-content {{
             display: flex;
@@ -55,7 +56,19 @@ def render():
         .footer-social a:hover {{
             color: #4CAF50;
         }}
+        @media (max-width: 768px) {{
+            .footer-content {{
+                flex-direction: column;
+                gap: 10px;
+            }}
+        }}
         </style>
+        """,
+        unsafe_allow_html=True
+    )
+    
+    st.markdown(
+        f"""
         <div class="footer">
             <div class="footer-content">
                 <div class="footer-quote">{random.choice(inspirational_quotes)}</div>
