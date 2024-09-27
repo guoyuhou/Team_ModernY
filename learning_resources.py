@@ -33,25 +33,33 @@ def render_markdown_page(content):
     )
     if st.button("返回"):
         st.session_state.page = "main"
+        st.empty()
+        render_learning_resources()
     st.markdown(content, unsafe_allow_html=True)
 
 def render_learning_resources():
     if "page" not in st.session_state:
         st.session_state.page = "main"
 
-    if st.session_state.page == "main":
-        render_main_page()
-    else:
-        file_path = os.path.join(os.path.dirname(__file__), 'markdown', st.session_state.page)
-        try:
-            with open(file_path, 'r', encoding='utf-8') as file:
-                content = file.read()
-                html = markdown.markdown(content)
-                render_markdown_page(html)
-        except FileNotFoundError:
-            st.error(f"抱歉，无法找到内容文件。我们正在努力修复这个问题。")
-            if st.button("返回主页"):
-                st.session_state.page = "main"
+    # 创建一个空的容器来放置页面内容
+    page_container = st.empty()
+
+    with page_container.container():
+        if st.session_state.page == "main":
+            render_main_page()
+        else:
+            file_path = os.path.join(os.path.dirname(__file__), 'markdown', st.session_state.page)
+            try:
+                with open(file_path, 'r', encoding='utf-8') as file:
+                    content = file.read()
+                    html = markdown.markdown(content)
+                    render_markdown_page(html)
+            except FileNotFoundError:
+                st.error(f"抱歉，无法找到内容文件。我们正在努力修复这个问题。")
+                if st.button("返回主页"):
+                    st.session_state.page = "main"
+                    page_container.empty()
+                    render_learning_resources()
 
 def render_main_page():
     st.title("学习资源宝库")
@@ -140,6 +148,8 @@ def render_main_page():
         )
         if st.button(f"查看 {resource['title']} 内容", key=resource['title']):
             st.session_state.page = resource['file']
+            st.empty()
+            render_learning_resources()
 
 if __name__ == "__main__":
     render_learning_resources()
