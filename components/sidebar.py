@@ -1,17 +1,7 @@
 import streamlit as st
-from streamlit_lottie import st_lottie
-import requests
 import random
 
-def load_lottie_url(url: str):
-    r = requests.get(url)
-    if r.status_code != 200:
-        return None
-    return r.json()
-
 def render():
-    # 加载动画
-    
     st.sidebar.markdown(
         """
         <div class="sidebar-header">
@@ -20,9 +10,6 @@ def render():
         """,
         unsafe_allow_html=True
     )
-    
-    # 显示动画
-    st_lottie(lottie_sidebar, height=80, key="sidebar")
     
     menu_items = {
         "首页": "home",
