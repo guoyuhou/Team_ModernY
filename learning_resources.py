@@ -2,6 +2,7 @@ import streamlit as st
 import random
 from streamlit_lottie import st_lottie
 import requests
+import markdown
 
 def load_lottie_url(url: str):
     r = requests.get(url)
@@ -18,11 +19,9 @@ def render_learning_resources():
     st_lottie(lottie_json, speed=1, height=200, key="initial")
 
     resources = [
-        {"title": "Python 奇妙之旅", "description": "从零开始的 Python 冒险", "link": "https://example.com/python-journey", "icon": "https://img.icons8.com/color/48/000000/python.png", "difficulty": "初级"},
-        {"title": "数据分析魔法书", "description": "用 Pandas 揭秘数据的奥秘", "link": "https://example.com/data-magic", "icon": "https://img.icons8.com/color/48/000000/analytics.png", "difficulty": "中级"},
-        {"title": "机器学习炼金术", "description": "将数据转化为智慧的艺术", "link": "https://example.com/ml-alchemy", "icon": "https://img.icons8.com/color/48/000000/machine-learning.png", "difficulty": "高级"},
-        {"title": "Web开发魔法棒", "description": "挥一挥魔法棒，你的网站就出现了", "link": "https://example.com/web-magic", "icon": "https://img.icons8.com/color/48/000000/web.png", "difficulty": "中级"},
-        {"title": "人工智能未来城", "description": "探索AI的无限可能", "link": "https://example.com/ai-future", "icon": "https://img.icons8.com/color/48/000000/artificial-intelligence.png", "difficulty": "高级"},
+        {"title": "Streamlit框架+AI应用构建", "description": "学习如何使用Streamlit构建AI应用", "file": "streamlit_ai_tutorial.md", "icon": "https://img.icons8.com/color/48/000000/python.png", "difficulty": "中级"},
+        {"title": "Django框架+AI应用搭建", "description": "使用Django框架搭建AI应用", "file": "django_ai_tutorial.md", "icon": "https://img.icons8.com/color/48/000000/django.png", "difficulty": "高级"},
+        {"title": "Github使用教程", "description": "学习如何使用Github进行版本控制", "file": "github_tutorial.md", "icon": "https://img.icons8.com/color/48/000000/github.png", "difficulty": "初级"},
     ]
     
     st.markdown(
@@ -98,11 +97,15 @@ def render_learning_resources():
                     <div class="resource-title">{resource['title']}</div>
                     <div class="resource-difficulty {difficulty_class}">{resource['difficulty']}</div>
                     <div class="resource-description">{resource['description']}</div>
-                    <a class="resource-link" href="{resource['link']}" target="_blank">开启学习之旅</a>
                 </div>
                 """,
                 unsafe_allow_html=True
             )
+            if st.button(f"查看 {resource['title']} 内容", key=resource['title']):
+                with open(resource['file'], 'r', encoding='utf-8') as file:
+                    content = file.read()
+                    html = markdown.markdown(content)
+                    st.markdown(html, unsafe_allow_html=True)
 
     # 添加互动性：随机推荐功能
     if st.button("随机推荐资源"):
