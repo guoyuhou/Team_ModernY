@@ -1,5 +1,8 @@
 import streamlit as st
-from pages import render_home, render_team_info, render_product_dev, render_learning_resources
+from home import render_home
+from team_info import render_team_info
+from product_dev import render_product_dev
+from learning_resources import render_learning_resources
 from components import header, footer, sidebar
 
 def main():
