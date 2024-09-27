@@ -3,6 +3,7 @@ import random
 from streamlit_lottie import st_lottie
 import requests
 import markdown
+import os
 
 def load_lottie_url(url: str):
     r = requests.get(url)
@@ -102,10 +103,14 @@ def render_learning_resources():
                 unsafe_allow_html=True
             )
             if st.button(f"查看 {resource['title']} 内容", key=resource['title']):
-                with open(resource['file'], 'r', encoding='utf-8') as file:
-                    content = file.read()
-                    html = markdown.markdown(content)
-                    st.markdown(html, unsafe_allow_html=True)
+                file_path = os.path.join(os.path.dirname(__file__), resource['file'])
+                try:
+                    with open(file_path, 'r', encoding='utf-8') as file:
+                        content = file.read()
+                        html = markdown.markdown(content)
+                        st.markdown(html, unsafe_allow_html=True)
+                except FileNotFoundError:
+                    st.error(f"抱歉，无法找到 {resource['title']} 的内容文件。我们正在努力修复这个问题。")
 
     # 添加互动性：随机推荐功能
     if st.button("随机推荐资源"):
