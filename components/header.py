@@ -43,11 +43,6 @@ def render():
             60% {{ color: {colors[3]}; }}
             80% {{ color: {colors[4]}; }}
         }}
-        </style>
-        <div class="welcome-section">
-            <h1>未来创新实验室</h1>
-            <p id="dynamic-slogan">{random.choice(slogans)}</p>
-        </div>
         <script>
         function changeSlogan() {{
             const slogans = {slogans};
