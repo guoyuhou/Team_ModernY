@@ -49,3 +49,10 @@ def delete_learning_resource(resource_id):
     :return: 删除结果
     """
     return db.learning_resources.delete_one({"_id": resource_id})
+
+def get_latest_updates():
+    """
+    获取最新动态
+    :return: 最新动态列表
+    """
+    return list(db.updates.find({}, {"_id": 0}).sort("date", -1).limit(5))
