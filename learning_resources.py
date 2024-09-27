@@ -33,7 +33,6 @@ def render_markdown_page(content):
     )
     if st.button("返回"):
         st.session_state.page = "main"
-        st.experimental_rerun()
     st.markdown(content, unsafe_allow_html=True)
 
 def render_learning_resources():
@@ -139,7 +138,27 @@ def render_learning_resources():
             st.error(f"抱歉，无法找到内容文件。我们正在努力修复这个问题。")
             if st.button("返回主页"):
                 st.session_state.page = "main"
-                st.experimental_rerun()
+
+    # 在函数末尾添加这个条件检查
+    if st.session_state.page == "main":
+        render_main_page()
+
+def render_main_page():
+    st.title("学习资源宝库")
+    
+    # 添加动画效果
+    lottie_url = "https://assets5.lottiefiles.com/packages/lf20_v1yudlrx.json"
+    lottie_json = load_lottie_url(lottie_url)
+    st_lottie(lottie_json, speed=1, height=200, key="initial")
+
+    resources = [
+        {"title": "Streamlit框架+AI应用构建", "description": "学习如何使用Streamlit构建AI应用", "file": "streamlit_ai_tutorial.md", "icon": "https://img.icons8.com/color/48/000000/python.png", "difficulty": "中级"},
+        {"title": "Django框架+AI应用搭建", "description": "使用Django框架搭建AI应用", "file": "django_ai_tutorial.md", "icon": "https://img.icons8.com/color/48/000000/django.png", "difficulty": "高级"},
+        {"title": "Github使用教程", "description": "学习如何使用Github进行版本控制", "file": "github_tutorial.md", "icon": "https://img.icons8.com/color/48/000000/github.png", "difficulty": "初级"},
+    ]
+    
+    # 主页面的其余代码保持不变
+    # ...
 
 if __name__ == "__main__":
     render_learning_resources()
