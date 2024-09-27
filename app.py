@@ -9,17 +9,16 @@ def main():
     st.set_page_config(page_title="团队内部平台", layout="wide")
     
     header.render()
-    sidebar.render()
     
-    page = st.sidebar.selectbox("选择页面", ["首页", "团队信息", "产品开发流程", "学习资源"])
+    page = sidebar.render()
     
-    if page == "首页":
+    if page == "home":
         render_home()
-    elif page == "团队信息":
+    elif page == "team_info":
         render_team_info()
-    elif page == "产品开发流程":
+    elif page == "product_dev":
         render_product_dev()
-    elif page == "学习资源":
+    elif page == "learning_resources":
         render_learning_resources()
     
     footer.render()
