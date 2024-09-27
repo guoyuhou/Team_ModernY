@@ -1,13 +1,41 @@
 import streamlit as st
-from utils.db_utils import get_team_info, get_latest_updates
 
 def render_home():
     st.title("欢迎来到我们的团队内部平台")
     
     try:
-        # 直接调用函数，不使用缓存
-        team_data = get_team_info()
-        updates = get_latest_updates()
+        # 静态数据
+        team_data = {
+            "description": "我们是一个充满激情和创新的团队，致力于为客户提供最优质的服务。",
+            "vision": "成为行业内最受尊敬和信赖的技术解决方案提供商。",
+            "values": [
+                {"title": "创新", "description": "不断探索新技术"},
+                {"title": "协作", "description": "团结一致，共创佳绩"},
+                {"title": "诚信", "description": "诚实守信，言行一致"}
+            ],
+            "members": [
+                {"department": "技术部"},
+                {"department": "市场部"},
+                {"department": "人力资源部"},
+                {"department": "财务部"},
+                {"department": "客户服务部"}
+            ]
+        }
+        
+        updates = [
+            {
+                "date": "2023-05-01",
+                "title": "新产品发布",
+                "content": "我们很高兴地宣布，我们的新产品已经成功上线！",
+                "link": "https://example.com/new-product"
+            },
+            {
+                "date": "2023-04-15",
+                "title": "团队建设活动",
+                "content": "上周末，我们组织了一次成功的团队建设活动，增进了团队成员之间的了解和信任。",
+                "link": None
+            }
+        ]
         
         # 团队简介
         st.header("关于我们")
@@ -64,7 +92,7 @@ def render_home():
         
     except Exception as e:
         st.error(f"加载页面时发生错误: {str(e)}")
-        st.write("请检查数据库连接和数据格式是否正确。")
+        st.write("请检查数据格式是否正确。")
 
 if __name__ == "__main__":
     render_home()
