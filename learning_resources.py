@@ -39,7 +39,6 @@ def render_learning_resources():
             st.error("抱歉，无法找到内容文件。我们正在努力修复这个问题。")
             if st.button("返回主页"):
                 st.session_state.learning_page = 'main'
-                st.experimental_rerun()
 
 def render_main_learning_page():
     lottie_url = "https://assets5.lottiefiles.com/packages/lf20_v1yudlrx.json"
@@ -62,7 +61,6 @@ def render_main_learning_page():
             st.write(f"难度：{resource['difficulty']}")
             if st.button(f"查看 {resource['title']} 内容", key=resource['title']):
                 st.session_state.learning_page = resource['file']
-                st.experimental_rerun()
 
 if __name__ == "__main__":
     main()
