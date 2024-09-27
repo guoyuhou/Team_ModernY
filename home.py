@@ -8,8 +8,8 @@ def render_home():
     st.markdown(
         """
         <div class="welcome-section">
-            <h1>ModernY</h1>
-            <p class="subtitle">在这里，我们不仅激发灵感，更是创造未来的先锋。</p>
+            <h1 class="animate-title">ModernY</h1>
+            <p class="subtitle animate-subtitle">在这里，我们不仅激发灵感，更是创造未来的先锋。</p>
             <div class="scroll-down"></div>
         </div>
         """,
@@ -63,7 +63,7 @@ def render_home():
         
         # 团队简介
         st.header("我们的使命")
-        st.markdown(f"<p class='team-description'>{team_data.get('description', '团队描述暂未提供')}</p>", unsafe_allow_html=True)
+        st.markdown(f"<p class='team-description animate-text'>{team_data.get('description', '团队描述暂未提供')}</p>", unsafe_allow_html=True)
         
         # 团队愿景
         st.subheader("愿景")
@@ -77,7 +77,7 @@ def render_home():
             for idx, value in enumerate(values):
                 with cols[idx]:
                     st.markdown(f"""
-                    <div class='value-card' style='background-color: {value["color"]}'>
+                    <div class='value-card animate-card' style='background-color: {value["color"]}'>
                         <div class='value-icon'>{value['icon']}</div>
                         <h3>{value.get('title', '')}</h3>
                         <p>{value.get('description', '')}</p>
@@ -121,9 +121,9 @@ def render_home():
                 with st.expander(f"{update.get('date', '')} - {update.get('title', '')}"):
                     cols = st.columns([2, 1])
                     with cols[0]:
-                        st.markdown(f"<p class='update-content'>{update.get('content', '')}</p>", unsafe_allow_html=True)
+                        st.markdown(f"<p class='update-content animate-text'>{update.get('content', '')}</p>", unsafe_allow_html=True)
                         if update.get("link"):
-                            st.markdown(f"<a href='{update['link']}' target='_blank' class='learn-more-btn'>深入探索</a>", unsafe_allow_html=True)
+                            st.markdown(f"<a href='{update['link']}' target='_blank' class='learn-more-btn animate-btn'>深入探索</a>", unsafe_allow_html=True)
                     with cols[1]:
                         st.image(update.get('image', 'https://via.placeholder.com/300x200'), use_column_width=True)
         else:
@@ -177,7 +177,7 @@ def render_home():
         st.error(f"创新过程中遇到了一些挑战: {str(e)}")
         st.write("别担心，这正是我们突破自我的机会！")
 
-    # 添加CSS样式
+    # 添加CSS样式和JavaScript动画
     st.markdown(
         """
         <style>
@@ -393,7 +393,115 @@ def render_home():
                 margin-bottom: 1rem;
             }
         }
+        
+        /* 新增动画类 */
+        .animate-title {
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        .animate-subtitle {
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+        
+        .animate-text {
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1s forwards;
+        }
+        
+        .animate-card {
+            opacity: 0;
+            animation: fadeInScale 0.5s ease-out forwards;
+        }
+        
+        .animate-btn {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
         </style>
+        
+        <script>
+        function animateCards() {
+            const cards = document.querySelectorAll('.animate-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.animation = 'fadeInScale 0.5s ease-out forwards';
+                }, index * 100);
+            });
+        }
+        
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-text, .animate-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = entry.target.classList.contains('animate-card') ? 
+                            'fadeInScale 0.5s ease-out forwards' : 'fadeIn 1s ease-out forwards';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            elements.forEach(el => observer.observe(el));
+        }
+        
+        document.addEventListener('DOMContentLoaded', (event) => {
+            animateCards();
+            animateOnScroll();
+        });
+        </script>
         """,
         unsafe_allow_html=True
     )
