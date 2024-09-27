@@ -42,6 +42,7 @@ def render():
         <style>
         .sidebar .sidebar-content {
             background-color: #f0f2f6;
+            transition: background-color 0.5s ease;
         }
         .stButton>button {
             width: 100%;
@@ -50,12 +51,89 @@ def render():
             border: 1px solid #e0e0e0;
             border-radius: 4px;
             margin-bottom: 10px;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
         .stButton>button:hover {
             background-color: #f0f0f0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .stButton>button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+        .stButton>button:hover::after {
+            animation: ripple 1s ease-out;
+        }
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 1;
+            }
+            20% {
+                transform: scale(25, 25);
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(40, 40);
+            }
+        }
+        .sidebar .sidebar-content {
+            animation: sidebarFadeIn 1s ease-out;
+        }
+        @keyframes sidebarFadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
         </style>
+        <script>
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.animation = 'fadeInUp 0.5s ease-out forwards';
+            }
+          });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.sidebar .sidebar-content > *').forEach(el => {
+          observer.observe(el);
+        });
+
+        function animateProgress() {
+          const progress = document.querySelector('.stProgress > div');
+          let width = 0;
+          const interval = setInterval(() => {
+            if (width >= progress.style.width.replace('%', '')) {
+              clearInterval(interval);
+            } else {
+              width++;
+              progress.style.width = width + '%';
+            }
+          }, 10);
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+          animateProgress();
+        });
+        </script>
         """,
         unsafe_allow_html=True
     )
