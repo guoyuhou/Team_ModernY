@@ -35,22 +35,112 @@ def render_team_info():
     
     team_data = load_team_data()
     
-    st.header("团队愿景")
-    st.write(team_data["vision"])
+    st.markdown(
+        """
+        <div class="team-vision">
+            <h2>团队愿景</h2>
+            <p class="vision-text">成为行业领先的创新型科技公司</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
     
-    st.header("团队文化")
+    st.markdown("<h2>团队文化</h2>", unsafe_allow_html=True)
     for value in team_data["culture"]:
-        st.subheader(value["title"])
-        st.write(value["description"])
+        st.markdown(
+            f"""
+            <div class="culture-item">
+                <h3>{value["title"]}</h3>
+                <p>{value["description"]}</p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
     
-    st.header("团队成员")
-    cols = st.columns(3)
-    for idx, member in enumerate(team_data["members"]):
-        with cols[idx % 3]:
-            st.image(member["avatar"], width=150)
-            st.subheader(member["name"])
-            st.write(member["position"])
-            st.write(member["bio"])
+    st.markdown("<h2>团队成员</h2>", unsafe_allow_html=True)
+    for member in team_data["members"]:
+        st.markdown(
+            f"""
+            <div class="team-member">
+                <img src="{member['avatar']}" alt="{member['name']}">
+                <h3>{member['name']}</h3>
+                <p class="position">{member['position']}</p>
+                <p class="bio">{member['bio']}</p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+    # 添加CSS和JavaScript
+    st.markdown(
+        """
+        <style>
+        .team-vision {
+            background-color: #f0f2f6;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .vision-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #262730;
+        }
+        .culture-item {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+            transition: transform 0.3s;
+        }
+        .culture-item:hover {
+            transform: translateY(-5px);
+        }
+        .team-member {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+        .team-member .position {
+            font-style: italic;
+            color: #666;
+        }
+        </style>
+        <script>
+        // 添加简单的滚动动画
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            document.querySelectorAll('.culture-item, .team-member').forEach((el) => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.5s, transform 0.5s';
+                observer.observe(el);
+            });
+        });
+        </script>
+        """,
+        unsafe_allow_html=True
+    )
 
 __all__ = ['render_team_info']
 

@@ -1,7 +1,15 @@
 import streamlit as st
 
 def render_home():
-    st.title("欢迎来到我们的团队内部平台")
+    st.markdown(
+        """
+        <div class="welcome-section">
+            <h1>欢迎来到我们的团队内部平台</h1>
+            <p>我们是一个充满激情和创新的团队，致力于为客户提供最优质的服务。</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
     
     try:
         # 静态数据
@@ -93,6 +101,64 @@ def render_home():
     except Exception as e:
         st.error(f"加载页面时发生错误: {str(e)}")
         st.write("请检查数据格式是否正确。")
+
+    # 添加一些视觉元素
+    st.markdown(
+        """
+        <div class="feature-grid">
+            <div class="feature-item">
+                <img src="https://img.icons8.com/color/96/000000/innovation.png" alt="创新">
+                <h3>创新</h3>
+                <p>不断探索新技术</p>
+            </div>
+            <div class="feature-item">
+                <img src="https://img.icons8.com/color/96/000000/collaboration.png" alt="协作">
+                <h3>协作</h3>
+                <p>团结一致，共创佳绩</p>
+            </div>
+            <div class="feature-item">
+                <img src="https://img.icons8.com/color/96/000000/trust.png" alt="诚信">
+                <h3>诚信</h3>
+                <p>诚实守信，言行一致</p>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # 添加CSS样式
+    st.markdown(
+        """
+        <style>
+        .welcome-section {
+            background-color: #f0f2f6;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        .welcome-section h1 {
+            color: #262730;
+        }
+        .feature-grid {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        .feature-item {
+            text-align: center;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .feature-item img {
+            width: 64px;
+            height: 64px;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
 if __name__ == "__main__":
     render_home()

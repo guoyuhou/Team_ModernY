@@ -19,6 +19,32 @@
 6. 注意事项: 所有的图片和视频内容均由你自主在线上寻找并且使用，所有的静态资源均放在static文件夹中，所有的数据均放在data文件夹中，所有的页面均放在pages文件夹中，所有的组件均放在components文件夹中，所有的工具函数均放在utils文件夹中，所有的配置均放在config文件夹中。
 
 
+文件框架：
+team_platform/
+│
+├── app.py                 # 主应用入口
+├── config.py              # 配置文件
+├── requirements.txt       # 依赖包列表
+│
+├── pages/                 # 页面模块
+│   ├── home.py            # 首页
+│   ├── team_info.py       # 团队信息页
+│   ├── product_dev.py     # 产品开发流程页
+│   └── learning_resources.py  # 学习资源页
+│
+├── components/            # 可复用组件
+│   ├── header.py          # 页头组件
+│   ├── footer.py          # 页脚组件
+│   └── sidebar.py         # 侧边栏组件
+├── static/                # 静态资源
+│   ├── css/               # CSS文件
+│   ├── js/                # JavaScript文件
+│   └── images/            # 图片资源
+│
+└── data/                  # 数据文件夹
+    ├── team_data.json     # 团队信息数据
+    └── dev_process.json   # 开发流程数据
+
 2024.9.27：
     # 团队内部平台开发总结
 
@@ -83,5 +109,8 @@
 产品构建过程：
 1. 基础框架搭建
 2. CSS html javascript 渲染
+   1. css 实现页面渲染:媒体查询（Media Queries）、弹性盒子（Flexbox）和网格布局（Grid Layout）等CSS技术
+   2. javascript 实现不同的动态功能
+   3. lottie 实现动画效果
 3. 微调
 4. 

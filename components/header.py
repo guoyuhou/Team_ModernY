@@ -1,25 +1,31 @@
 import streamlit as st
 
 def render():
-    # 使用在线图片URL替代本地图片
-    logo_url = "https://img.freepik.com/free-vector/flat-design-ac-logo-template_23-2149282639.jpg"
-    
-    try:
-        # 直接使用st.image加载在线图片
-        st.image(logo_url, width=200)
-    except Exception as e:
-        st.error(f"无法加载logo图片: {str(e)}")
-        # 使用文本替代logo
-        st.title("团队内部平台")
+    # 使用更符合团队主题的在线图片URL
+    logo_url = "https://img.freepik.com/free-vector/gradient-technology-logo-template_23-2149217425.jpg"
     
     st.markdown(
-        """
+        f"""
+        <div class="header">
+            <img src="{logo_url}" alt="团队logo" class="logo">
+            <h1>我们的创新团队</h1>
+        </div>
         <style>
-        .stApp header {
+        .header {{
+            display: flex;
+            align-items: center;
             background-color: #f0f2f6;
             padding: 1rem;
             border-bottom: 1px solid #e0e0e0;
-        }
+        }}
+        .logo {{
+            width: 50px;
+            margin-right: 1rem;
+        }}
+        .header h1 {{
+            color: #262730;
+            font-size: 1.5rem;
+        }}
         </style>
         """,
         unsafe_allow_html=True

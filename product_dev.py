@@ -87,27 +87,52 @@ def render_product_dev():
     ]
     
     for stage in dev_process:
-        st.header(stage["name"])
-        st.write(stage["description"])
+        with st.container():
+            col1, col2 = st.columns([1, 3])
+            with col1:
+                # 为每个阶段添加图标
+                icon_url = f"https://img.icons8.com/color/48/000000/{stage['name'].lower().replace(' ', '-')}.png"
+                st.image(icon_url, width=48)
+            with col2:
+                st.header(stage["name"])
+                st.write(stage["description"])
         
         for step in stage["steps"]:
-            st.subheader(step["title"])
-            st.write(step["content"])
-            
-            if "tools" in step:
-                st.write("推荐工具:")
-                for tool in step["tools"]:
-                    st.write(f"- {tool}")
+            with st.expander(step["title"]):
+                st.write(step["content"])
+                
+                if "tools" in step:
+                    st.write("推荐工具:")
+                    for tool in step["tools"]:
+                        st.write(f"- {tool}")
         
-        st.write("---")
+        st.markdown("---")
     
-    st.button("开始新项目", on_click=start_new_project)
+    if st.button("开始新项目", key="start_project"):
+        st.success("新项目已创建!")
 
-def start_new_project():
-    # 实现开始新项目的逻辑
-    st.success("新项目已创建!")
-
-__all__ = ['render_product_dev']
+    # 添加CSS样式
+    st.markdown(
+        """
+        <style>
+        .stExpander {
+            background-color: #f0f2f6;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .stExpander > div:first-child {
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        .stButton>button {
+            width: 100%;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
 if __name__ == "__main__":
     render_product_dev()
