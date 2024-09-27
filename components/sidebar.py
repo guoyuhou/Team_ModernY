@@ -15,14 +15,14 @@ def render():
     st.sidebar.markdown(
         """
         <div class="sidebar-header">
-            <h2>创新导航</h2>
+            <h3>创新导航</h3>
         </div>
         """,
         unsafe_allow_html=True
     )
     
     # 显示动画
-    st_lottie(lottie_sidebar, height=150, key="sidebar")
+    st_lottie(lottie_sidebar, height=100, key="sidebar")
     
     menu_items = {
         "创新中心": "home",
@@ -36,7 +36,7 @@ def render():
             st.session_state.page = value
     
     st.sidebar.markdown("---")
-    st.sidebar.success("创新版本: v2.0.0 - 突破边界")
+    st.sidebar.info("创新版本: v2.0.0 - 突破边界")
     
     # 添加互动元素
     user_idea = st.sidebar.text_input("分享你的创新灵感:")
@@ -48,26 +48,28 @@ def render():
         """
         <style>
         .sidebar-header {
-            padding: 1rem;
+            padding: 0.5rem;
             background: linear-gradient(135deg, #00c6ff, #0072ff);
             color: white;
             text-align: center;
-            margin-bottom: 1rem;
-            border-radius: 10px;
+            margin-bottom: 0.5rem;
+            border-radius: 5px;
         }
         .stButton>button {
             width: 100%;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
             border: none;
-            background: linear-gradient(45deg, #FF512F, #DD2476);
+            background: linear-gradient(45deg, #4CAF50, #45a049);
             color: white;
             transition: all 0.3s ease;
-            border-radius: 20px;
+            border-radius: 10px;
             font-weight: bold;
+            font-size: 0.9em;
+            padding: 0.3rem;
         }
         .stButton>button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: scale(1.02);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .sidebar .sidebar-content {
             background: linear-gradient(180deg, #f8f9fa, #e9ecef);
